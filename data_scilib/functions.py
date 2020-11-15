@@ -3,7 +3,7 @@ import csv
 """
 This function prints the whole csv file
 """
-def read_all(file):
+def print_all(file):
     with open(file, newline = '') as csvfile:
       spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
       for row in spamreader:
@@ -12,7 +12,7 @@ def read_all(file):
 """
 This function prints the whole csv file except for the first row
 """
-def read_no_first(file):
+def print_no_first(file):
     with open(file, newline='') as csvfile:
       spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
       next(spamreader) # Skips first row
