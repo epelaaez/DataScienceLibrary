@@ -19,6 +19,23 @@ def print_no_first(file):
     for row in spamreader:
       print(', '.join(row))
 
+'''
+This function prints the number of rows in the csv file
+
+'''''
+def RowsNum(file):
+  with open(file, newline='') as csvfile:
+    spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
+    print(len(list(spamreader)))
+
+'''
+This function prints the number of columns in the csv file
+
+'''''
+def ColumnsNum(file):
+  with open(file, newline='') as csvfile:
+    spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
+    print(len((list(spamreader))[0]))
 
 """
 This function will return a list containing the rows where the specified element appears
@@ -83,4 +100,5 @@ def is_empty(file, column):
       if row[column_index].strip() == '':
         empty.append(counter)
 
-  return empty
+  return empty 
+#suggestions: 1. a function that accounts for when there are 2 of the same thing 2. 

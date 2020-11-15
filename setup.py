@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name = 'data_scilib',
         version = '0.0.1',
-        description = 'First test',
+        description = 'Data science library for python.',
         url = '#',
         author = 'test',
         author_email = 'test@test.com',
