@@ -10,32 +10,33 @@ def print_all(file):
       print(', '.join(row))
 
 """
-This function prints the whole csv file except for the first row
+This function prints the whole csv file except for the first row (header)
 """
-def print_no_first(file):
+def print_no_header(file):
   with open(file, newline='') as csvfile:
     spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
     next(spamreader) # Skips first row
     for row in spamreader:
       print(', '.join(row))
 
-'''
-This function prints the number of rows in the csv file
-
-'''''
-def RowsNum(file):
+"""
+This function returns the number of rows in the csv file
+"""
+def rows_num(file):
   with open(file, newline='') as csvfile:
     spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
-    print(len(list(spamreader)))
+    return(len(list(spamreader)) - 1) # subtract 1 to not count header
+    
+    # TODO: check for empty rows
+    
 
-'''
-This function prints the number of columns in the csv file
-
-'''''
-def ColumnsNum(file):
+"""
+This function returns the number of columns in the csv file
+"""
+def columns_num(file):
   with open(file, newline='') as csvfile:
     spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
-    print(len((list(spamreader))[0]))
+    return(len((list(spamreader))[0]))
 
 """
 This function will return a list containing the rows where the specified element appears
