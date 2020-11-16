@@ -5,6 +5,10 @@ def tests():
     print(f.is_empty('tests_files/small_dataset.csv', 'Last name'))
     print(f.rows_num('tests_files/small_dataset.csv'))
     print(f.columns_num('tests_files/small_dataset.csv'))
+    print(f.count_if('tests_files/small_dataset.csv', [
+        ('Active', lambda x: x == "No"), 
+        ('Age', lambda x: x >= 30), 
+        ('Location', lambda x: x < 10)])) # Last condition will return 0 matches since you're trying to compare a string with a number. IMPORTANT: an exception will not be thrown.
 
 if __name__ == '__main__':
     tests()

@@ -70,7 +70,7 @@ def find_value_in_row(file, column, element):
 
   # If the "column" was not found on the first row of the file, raise an exception
   if column_index == -1:
-    raise Exception("The column specified was not found")
+    raise Exception(f"Column '{column}' not found")
     return []
 
   rows = find_element(file, element) # Use already defined function to find the rows where "element" appears
@@ -102,4 +102,35 @@ def is_empty(file, column):
         empty.append(counter)
 
   return empty 
-#suggestions: 1. a function that accounts for when there are 2 of the same thing 2. 
+  # suggestions: 1. a function that accounts for when there are 2 of the same thing 2. 
+
+"""
+Checks how many rows (excluding the header) satisfy the condition given by a lambda function in the column specified.
+The input type is of array to enable multiple conditions in multiple columns. The array should be of tuples in the form: (column, condition), where column is a string and condition a lambda function
+"""
+def count_if(file, conditions):
+  column_indeces = [-1] * len(conditions)
+  result = [0] * len(conditions)
+
+  with open(file, newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter = ',', quotechar = '|')
+    header = next(spamreader)
+    for index, condition in enumerate(conditions):
+      if condition[0] in header:
+        column_indeces[index] = header.index(condition[0])
+      else:
+        raise Exception(f"Column '{condition[0]}' not found.")
+
+    for row in spamreader:
+      for index, condition in enumerate(conditions):
+        try:
+          if condition[1](row[column_indeces[index]]):
+            result[index] += 1
+        except Exception:
+            try:
+              if condition[1](int(row[column_indeces[index]])):
+                result[index] += 1
+            except Exception:
+              pass
+  
+  return result
