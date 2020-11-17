@@ -70,7 +70,6 @@ def find_value_in_row(file, column, element):
   # If the "column" was not found on the first row of the file, raise an exception
   if column_index == -1:
     raise Exception(f"Column '{column}' not found")
-    return []
 
   rows = find_element(file, element) # Use already defined function to find the rows where "element" appears
 
