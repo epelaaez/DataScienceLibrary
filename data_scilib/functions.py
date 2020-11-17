@@ -128,7 +128,7 @@ def count_if(file, conditions):
             result[index] += 1
         except Exception:
             try:
-              if condition[1](int(row[column_indeces[index]])):
+              if condition[1](float(row[column_indeces[index]])):
                 result[index] += 1
             except Exception:
               pass
