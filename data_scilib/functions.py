@@ -81,7 +81,7 @@ def find_value_in_row(file, column, element):
 
 def is_empty(file, column):
   """
-  This function will check if any row is empty on the "column" specified. If it is empty, it will and the row index (0 based, index 0 is header row) to the array returned.
+  This function will check if any row is empty on the "column" specified. If it is empty, it will add the row index (0 based, index 0 is header row) to the array returned.
   """
   column_index = -1
   empty = []
