@@ -102,7 +102,7 @@ def is_empty(file, column):
         empty.append(counter)
 
   return empty 
-  # suggestions: 1. a function that accounts for when there are 2 of the same thing 2. 
+
 
 """
 Checks how many rows (excluding the header) satisfy the condition given by a lambda function in the column specified.
