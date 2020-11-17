@@ -115,6 +115,7 @@ def count_if(file, conditions):
   with open(file, newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter = ',', quotechar = '|')
     header = next(spamreader)
+
     for index, condition in enumerate(conditions):
       if condition[0] in header:
         column_indeces[index] = header.index(condition[0])
@@ -133,4 +134,37 @@ def count_if(file, conditions):
             except Exception:
               pass
   
+  return result
+
+"""
+This function will return the maximum value and minimum value of each column specified in the "column" paramater. This parameter should be an array of strings with all the columns desired.
+The return value is an array of arrays, each inside array with contain the maximum and minimum value of the column in the same index in the "columns" paramter.
+IMPORTANT: the columns specified must have numerical values in at least 2 rows. It will return ['-inf', 'inf'] for columns that have no numerical values.
+"""
+def max_min(file, columns):
+  column_indeces = [-1] * len(columns)
+  result = []
+  for _ in range(len(columns)):
+    result.append([float('-inf'), float('inf')])
+
+  with open(file, newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter = ',', quotechar = '|')
+    header = next(spamreader)
+
+    for index, column in enumerate(columns):
+      if column in header:
+        column_indeces[index] = header.index(column)
+      else:
+        raise Exception(f"Column '{column}' not found.")
+
+    for row in spamreader:
+      for n_column, index in enumerate(column_indeces):
+        try:
+          if float(row[index]) > result[n_column][0]:
+            result[n_column][0] = float(row[index])
+          if float(row[index]) < result[n_column][1]:
+            result[n_column][1] = float(row[index])
+        except Exception:
+          pass
+
   return result

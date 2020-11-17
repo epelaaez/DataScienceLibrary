@@ -8,7 +8,12 @@ def tests():
     print(f.count_if('tests_files/small_dataset.csv', [
         ('Active', lambda x: x == "No"), 
         ('Age', lambda x: x >= 30), 
-        ('Location', lambda x: x < 10)])) # Last condition will return 0 matches since you're trying to compare a string with a number. IMPORTANT: an exception will not be thrown.
+        ('Location', lambda x: x < 10) # Last condition will return 0 matches since you're trying to compare a string with a number. IMPORTANT: an exception will not be thrown.
+    ])) 
+    print(f.max_min('tests_files/small_dataset.csv', [
+        'Age',
+        'First name', # will return ['-inf', 'inf'] since column has no numerical value
+    ]))    
 
 if __name__ == '__main__':
     tests()
