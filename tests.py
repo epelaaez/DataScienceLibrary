@@ -7,7 +7,7 @@ def tests():
     print(f"\nCalculating how many rows (without header) the file has. Found: {first_test} rows.")
 
     second_test = f.columns_num('tests_files/small_dataset.csv')
-    print(f"\nCalculating how many columns the file has. Found: {first_test} columns.")
+    print(f"\nCalculating how many columns the file has. Found: {second_test} columns.")
 
     third_test = f.find_value_in_row('tests_files/small_dataset.csv', 'Username', 'Sam')
     print(f"\nLooking for value of column 'Username' in the row where value 'Sam' is present in any column. Found: {third_test[0]} is the value for 'Username' in the row where value 'Sam' is present.")
