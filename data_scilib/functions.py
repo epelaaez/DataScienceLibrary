@@ -4,20 +4,26 @@ def print_all(file):
   """
   This function prints the whole csv file
   """
-  with open(file, newline = '') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-    for row in spamreader:
-      print(', '.join(row))
+  try:
+    with open(file, newline = '') as csvfile:
+      spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+      for row in spamreader:
+        print(', '.join(row))
+  except FileNotFoundError:
+    print(f'File "{file}" not found in function print_all')
 
 def print_no_header(file):
   """
   This function prints the whole csv file except for the first row (header)
   """
-  with open(file, newline='') as csvfile:
-    spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
-    next(spamreader) # Skips first row
-    for row in spamreader:
-      print(', '.join(row))
+  try:
+    with open(file, newline='') as csvfile:
+      spamreader=csv.reader(csvfile,delimiter=',', quotechar='|')
+      next(spamreader) # Skips first row
+      for row in spamreader:
+        print(', '.join(row))
+  except FileNotFoundError:
+    print(f'File "{file}" not found in function print_no_header')
 
 def rows_num(file):
   """
