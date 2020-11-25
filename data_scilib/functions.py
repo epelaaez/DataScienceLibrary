@@ -2,10 +2,18 @@ import csv
 
 class analyzer(object):
   def __init__(self, path):
+    self.path = path
+    self.check_path()
+
+  def check_path(self):
+    self.open_file()
+    self.close()
+
+  def open_file(self):
     try:
-      self.file = open(path, newline = '')
+      self.file = open(self.path, newline = '')
     except FileNotFoundError:
-      raise Exception(f'File "{path}" not found when initiating class')
+      raise Exception(f'File "{self.path}" not found when initiating class')
 
   def close(self):
     """
@@ -17,34 +25,42 @@ class analyzer(object):
     """
     This function prints the whole csv file
     """
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter = ',', quotechar = '|')
     for row in spamreader:
       print(', '.join(row))
+    self.close()
 
   def print_no_header(self):
     """
     This function prints the whole csv file except for the first row (header)
     """
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter=',', quotechar='|')
     next(spamreader) # Skips first row
     for row in spamreader:
       print(', '.join(row))
+    self.close()
 
   def rows_num(self):
     """
     This function returns the number of rows in the csv file
     """
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter=',', quotechar='|')
-    return(len(list(spamreader)) - 1) # subtract 1 to not count header
-      
-    # TODO: check for empty rows
-    
+    num_rows = len(list(spamreader)) - 1
+    self.close()
+    return(num_rows) # subtract 1 to not count header
+          
   def columns_num(self):
     """
     This function returns the number of columns in the csv file
     """
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter=',', quotechar='|')
-    return(len((list(spamreader))[0]))
+    num_columns = len((list(spamreader))[0])
+    self.close()
+    return(num_columns)
 
   def find_element(self, element):
     """
@@ -52,11 +68,13 @@ class analyzer(object):
     """
     rows = []
 
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter=',', quotechar='|')
     next(spamreader) # Skips first row
     for row in spamreader:
       if element in row: # Check each row to check if element is present
-        rows.append(row)          
+        rows.append(row)
+    self.close          
             
     return rows
 
@@ -67,12 +85,14 @@ class analyzer(object):
     column_index = -1
     found = []
 
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter = ',', quotechar = '|')
     header = next(spamreader)
     for i in range(len(header)):
       if header[i] == column:
         column_index = i
         break
+    self.close()
 
     # If the "column" was not found on the first row of the file, raise an exception
     if column_index == -1:
@@ -92,6 +112,7 @@ class analyzer(object):
     column_index = -1
     empty = []
 
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter = ',', quotechar = '|')
     header = next(spamreader)
     for i in range(len(header)):
@@ -104,6 +125,7 @@ class analyzer(object):
       counter += 1
       if row[column_index].strip() == '':
         empty.append(counter)
+    self.close()
 
     return empty 
 
@@ -116,6 +138,7 @@ class analyzer(object):
     column_indeces = [-1] * len(conditions)
     result = [0] * len(conditions)
 
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter = ',', quotechar = '|')
     header = next(spamreader)
 
@@ -137,6 +160,7 @@ class analyzer(object):
             except Exception:
               pass
     
+    self.close()
     return result
 
   def max_min(self, columns):
@@ -150,6 +174,7 @@ class analyzer(object):
     for _ in range(len(columns)):
       result.append([float('-inf'), float('inf')])
 
+    self.open_file()
     spamreader = csv.reader(self.file, delimiter = ',', quotechar = '|')
     header = next(spamreader)
 
@@ -168,5 +193,6 @@ class analyzer(object):
             result[n_column][1] = float(row[index])
         except Exception:
           pass
-
+    
+    self.close()
     return result
