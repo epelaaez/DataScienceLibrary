@@ -48,9 +48,9 @@ class analyzer(object):
     """
     self.open_file()
     spamreader = csv.reader(self.file, delimiter=',', quotechar='|')
-    num_rows = len(list(spamreader)) - 1
+    num_rows = len(list(spamreader)) - 1 # subtract 1 to not count header
     self.close()
-    return(num_rows) # subtract 1 to not count header
+    return(num_rows) 
           
   def columns_num(self):
     """
