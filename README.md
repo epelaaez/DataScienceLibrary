@@ -99,3 +99,13 @@ Parameters:
 
 Return value:
 - An array of arrays, where each inside array (in the same order of the columns parameter) contains the maximum value found in index 0 and the minimum value found in index 1.
+
+```python
+a.average(column)
+```
+This function will return the average value of the given column. Each row that has no numeric value for the column will have no effect on the average or the number of rows considered. Thus, if there are no numeric values in the column specified, the average returned will be 0.   
+Parameters:
+- column: string with name of column you want the average of.   
+
+Return value:
+- Integer corresponding to the average for the given column.
