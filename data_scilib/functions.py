@@ -192,3 +192,33 @@ class analyzer(object):
     
     self.close()
     return result
+
+  def average(self, column):
+    """
+    This function will return the average value of the given column. Each row that has no numeric value for the column will have no effect on the average or the number of rows considered.
+    Thus, if there are no numeric values in the column specified, the average returned will be 0.
+    """
+    average = 0
+    index = -1 
+    num_rows = 0
+
+    self.open_file()
+    spamreader = csv.reader(self.file, delimiter = ',', quotechar = '|')
+    header = next(spamreader)
+
+    if column in header:
+      index = header.index(column)
+    else:
+      raise Exception(f"Column '{column} not found.")
+
+    for row in spamreader:
+      try:
+        average += float(row[index])
+        num_rows += 1
+      except Exception:
+        pass
+    
+    if num_rows == 0:
+      return 0
+
+    return average / num_rows

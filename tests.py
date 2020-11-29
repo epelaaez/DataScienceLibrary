@@ -64,6 +64,9 @@ def large_tests():
     print(f"\nLooking for the maximum and minimum value for 'total_cases' across all rows. Found: {fifth_test[0][0]} is the maximum and {fifth_test[0][1]} the minimum.")
     print(f"\nLooking for the maximum and minimum value for 'total_deaths' across all rows. Found: {fifth_test[1][0]} is the maximum and {fifth_test[1][1]} the minimum.")
 
+    sixth_test = analyzer.average('new_deaths')
+    print(f"\nCalculating average value for 'new_deaths' across all rows. Found: {sixth_test}.")
+
 if __name__ == '__main__':
     small_tests()
     large_tests()
