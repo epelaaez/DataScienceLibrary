@@ -1,7 +1,7 @@
 # Data Science Library
 As the name states it, this python library is aimed for use in data science programs where analyzing CSV files is needed. Functions similar to the most common ones in Excel are provided. 
 
-This project was the winner of the entrepreneurship track of the TeenHacks LI Fall 2020 Online Hackathon. More [here](https://devpost.com/software/data-science-library).
+This project was the winner of the entrepreneurship track of the TeenHacks LI Fall 2020 Online Hackathon, and was not intended to be a long-term project. More [here](https://devpost.com/software/data-science-library).
 
 ## Installation
 In order to install this library in your local machine, clone this repository by running:
